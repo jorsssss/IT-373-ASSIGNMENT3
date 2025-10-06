@@ -1,0 +1,12 @@
+{% extends 'Base.html' %}
+{% block title %}Announcements{% endblock %}
+{% block content %}
+<h2>Announcements</h2>
+<ul class="list-group">
+    {% for announcement in announcements %}
+        <li class="list-group-item">
+            <a href="{% url 'announcement_detail' announcement.id %}">{{ announcement.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

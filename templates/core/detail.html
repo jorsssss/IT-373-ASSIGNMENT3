@@ -1,0 +1,38 @@
+{% extends 'Base.html' %}
+{% block title %}{{ announcement.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ announcement.title }}</h2>
+
+<!-- Preview: First 30 words only -->
+<p id="short-text">
+    {{ announcement.content|truncatewords:5 }}{% if announcement.content|length > 50 %}...{% endif %}
+</p>
+
+<!-- Full text (hidden by default) -->
+<p id="full-text" style="display: none;">
+    {{ announcement.content }}
+</p>
+
+<!-- Toggle Button -->
+<button class="btn btn-primary" id="toggle-btn" onclick="toggleText()">Read more</button>
+
+<!-- JavaScript Toggle -->
+<script>
+    function toggleText() {
+        const shortText = document.getElementById("short-text");
+        const fullText = document.getElementById("full-text");
+        const button = document.getElementById("toggle-btn");
+
+        if (fullText.style.display === "none") {
+            fullText.style.display = "block";
+            shortText.style.display = "none";
+            button.innerText = "Show less";
+        } else {
+            fullText.style.display = "none";
+            shortText.style.display = "block";
+            button.innerText = "Read more";
+        }
+    }
+</script>
+{% endblock %}
